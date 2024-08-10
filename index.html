@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .box {
+        border: 1px solid black;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color:  cyan;
+        width: 200px;
+        margin: 20px auto;
+        text-align: center;
+        border-color: #663a82;
+      }
+      input {
+        margin-top: 30px;
+      }
+      .number, .row, .btn {
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.2);
+        color: black;
+        height: 50px;
+        width: 10%;
+        padding: 0 10px 0 45px;
+        border-radius: 30px;
+        outline: none;
+        transition: .2s ease;
+      }
+    </style>
+</head>
+<body>
+    <center>
+    <input id="table-number" type="number" placeholder="Enter table number" class="number">
+    <input id="rows" type="number" placeholder="Enter number of row" class="row">
+    <button id="print-table" class="btn">Print Table</button>
+    <div id="table-container"></div>
+    </center>
+
+    <script>
+        // Get the input fields and button
+        const tableNumberInput = document.getElementById("table-number");
+        const rowsInput = document.getElementById("rows");
+        const printTableButton = document.getElementById("print-table");
+        const tableContainer = document.getElementById("table-container");
+
+        // Add event listener to the button
+        printTableButton.addEventListener("click", printTable);
+
+        // Function to print the table
+        function printTable() {
+            // Get the input values
+            let tableNumber = parseInt(tableNumberInput.value);
+            let rows = parseInt(rowsInput.value);
+
+            // Validate the input
+            if (isNaN(tableNumber) || tableNumber <= 0 || isNaN(rows) || rows <= 0) {
+                alert("Invalid input. Please enter positive integers.");
+            } else {
+                // Print the table
+                let tableHTML = "";
+                for (let i = 1; i <= rows; i++) {
+                    // Using template literals correctly
+                    tableHTML += `<div class="box">${tableNumber} x ${i} = ${tableNumber * i}</div>`;
+                }
+                tableContainer.innerHTML = tableHTML;
+            }
+        }
+    </script>
+</body>
+</html>
